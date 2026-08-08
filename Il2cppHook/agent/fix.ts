@@ -10,7 +10,7 @@ function fixMoreVerison() {
     const UnityVersion = "2020.3.0f1c1"
 
     Il2Cpp.perform(() => {
-        if (Il2Cpp.Api._resolveInternalCall(allocCStr('UnityEngine.Application::get_unityVersion')).isNull()) {
+        if (Il2Cpp.exports.resolveInternalCall(allocCStr('UnityEngine.Application::get_unityVersion')).isNull()) {
             LOGW(`Couldn't determine the Unity version, Schedule set to ${UnityVersion}`)
             setTimeout(() => {
                 if (Reflect.has(Il2Cpp, "unityVersion")) {
@@ -67,7 +67,7 @@ function fixFieldOffset() {
             return local_offset
         }
     })
-    A(Il2Cpp.Api._fieldGetOffset, undefined, (ret) => {
+    A(Il2Cpp.exports.fieldGetOffset, undefined, (ret) => {
         let local_offset: number = ret.toInt32()
         if (local_offset < 0) return -1
         if (Process.arch == "arm") local_offset = local_offset - 8

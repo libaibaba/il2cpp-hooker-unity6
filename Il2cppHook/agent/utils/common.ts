@@ -317,7 +317,12 @@ globalThis.HookForwardEvent = () => {
         // MaxSdk.Scripts + MaxSdkCallbacks + ForwardEvent
         let ass = Il2Cpp.domain.tryAssembly("MaxSdk.Scripts")
         if (ass) {
-            ass.image.class("MaxSdkCallbacks").method("ForwardEvent").implementation = function (instance: NativePointer, eventPropsStr: NativePointer) {
+            // ✅ 修复后：改用 ...args: any[] 来无脑迎合新版严格的签名校验
+            ass.image.class("MaxSdkCallbacks").method("ForwardEvent").implementation = function (...args: any[]) {
+                // 从参数数组中按顺序安全提取出原本的两个指针
+                const instance: NativePointer = args[0]
+                const eventPropsStr: NativePointer = args[1]
+
                 LOGD(`ForwardEvent: ${instance}  ${readU16(eventPropsStr)}`)
                 return this.method("ForwardEvent").invoke(...arguments)
             }

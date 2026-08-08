@@ -16,7 +16,7 @@ export class ValueResolve {
     public constructor(cacheID: string, methodInfo: Il2Cpp.Method) {
         this.cacheId = cacheID
         this.method = methodInfo
-        this.args = new Array<NativePointer>(methodInfo.genericParameterCount)
+        this.args = new Array<NativePointer>(methodInfo.parameterCount)
     }
 
     public getCacheId(): string {
@@ -34,7 +34,7 @@ export class ValueResolve {
 
     public setMethod(method: Il2Cpp.Method): ValueResolve {
         this.method = method
-        this.args = new Array<NativePointer>(method.genericParameterCount)
+        this.args = new Array<NativePointer>(method.parameterCount)
         return this
     }
 

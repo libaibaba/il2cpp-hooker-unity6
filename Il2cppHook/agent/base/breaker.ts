@@ -52,7 +52,7 @@ export class Breaker {
                 let clsPtr: NativePointer = findClass(imgOrClsPtr)
                 if (clsPtr.isNull()) {
                     let imageName = closest(imgOrClsPtr, HookerBase._list_images_names)
-                    LOGE(`You mean this ? ${imageName} @ ${Il2Cpp.domain.assemblies.filter(item => item.name.includes)[0].handle}`)
+                    LOGE(`You mean this ? ${imageName} @ ${Il2Cpp.domain.assemblies.filter((item: any) => item.name.includes)[0].handle}`)
                     throw new Error(`\n\tCan't find class ${classNameStr}\n`)
                 }
                 if (classArray.length == 1 && clsPtr.equals(classArray[0].handle)) innerImage(clsPtr)
@@ -70,7 +70,7 @@ export class Breaker {
                 // find classPtr from images cache then and attach it(class)
                 let imageHandle = imgOrClsPtr
                 new Il2Cpp.Image(imageHandle).classes
-                    .filter(cls => cls.namespace.includes(nSp)) // filter namespace
+                    .filter(cls => cls.namespace?.includes(nSp)) // filter namespace
                     .flatMap(cls => cls.methods)
                     .forEach(Breaker.attachMethod)
             } else {

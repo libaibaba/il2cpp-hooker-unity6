@@ -1,10 +1,10 @@
 const attachCurrentThread = () => {
-    let thread = Il2Cpp.Api._threadCurrent()
+    let thread = Il2Cpp.exports.threadGetCurrent()
     if (thread.isNull()) Il2Cpp.domain.attach()
 }
 
 const detachCurrentThread = () => {
-    let threadHandle = Il2Cpp.Api._threadCurrent();
+    let threadHandle = Il2Cpp.exports.threadGetCurrent();
     if (!threadHandle.isNull()) new Il2Cpp.Thread(threadHandle).detach()
 }
 

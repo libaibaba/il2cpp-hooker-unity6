@@ -136,7 +136,7 @@ const dealWithSpecialType = (field: Il2Cpp.Field, thisValueP: NativePointer): st
 function fakeStaticField(field: Il2Cpp.Field): NativePointer {
     try {
         const tmpOut: NativePointer = alloc()
-        Il2Cpp.Api._fieldGetStaticValue(field.handle, tmpOut)
+        Il2Cpp.exports.fieldGetStaticValue(field.handle, tmpOut)
         return tmpOut
     } catch (error) {
         return ptr(0)
@@ -173,7 +173,7 @@ globalThis.lfp = (mPtr: NativePointer) => {
     const classType: Array<mscorlib.Type> = (getTypeParent(mPtr) as Array<mscorlib.Type>).reverse().map((localType: mscorlib.Type) => {
         const localT = new Il2Cpp.Class(localType.handle)
         if (localT.isAbstract) {
-            const objT = Il2Cpp.Image.corlib.class("System.Object")
+            const objT = Il2Cpp.corlib.class("System.Object")
             return new mscorlib.Type(localT.inflate(objT).type.handle)
         }
         return localType

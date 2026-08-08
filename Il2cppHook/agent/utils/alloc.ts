@@ -9,7 +9,7 @@ const allocStrInner = (str: string, type: TYPE_STR = TYPE_STR.C_STR): NativePoin
     }
     switch (type) {
         case TYPE_STR.C_STR: return Memory.allocUtf8String(str)
-        case TYPE_STR.U_STR: return Il2Cpp.Api._stringNew(Memory.allocUtf8String(str))
+        case TYPE_STR.U_STR: return Il2Cpp.exports.stringNew(Memory.allocUtf8String(str))
         case TYPE_STR.OC_STR: return ObjC.classes["NSString"]["+ stringWithUTF8String:"](allocCStr(str))
     }
 }

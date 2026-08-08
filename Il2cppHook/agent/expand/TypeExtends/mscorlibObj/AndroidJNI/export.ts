@@ -11,7 +11,7 @@ const B_UnityJNI = () => {
 
     LOGW(`[ B_UnityJNI ] class_AndroidJNISafe = ${class_AndroidJNISafe}`)
 
-    class_AndroidJNISafe?.methods.forEach(method => {
+    class_AndroidJNISafe?.methods.forEach((method:any) => {
 
         const methodName = method.name
 

@@ -144,7 +144,7 @@ const findClasses = (filterClassName: string, completeMatch: boolean = false, re
             let E = FM.alignStr(`E:${item.isEnum}`, 8)
             let A = FM.alignStr(`A:${item.isAbstract}`, 8)
             // AssemblyName ${class.assemblyName} / NameSpace ${item.namespace}.${class.name}
-            let N = `${TFM(FM.alignStr(item.name, maxNameLen), LogColor.C93)} ${TFM(`< ${item.assemblyName} -> ${item.namespace.length == 0 ? 'NULL' : item.namespace} >`, LogColor.C33)}`
+            let N = `${TFM(FM.alignStr(item.name, maxNameLen), LogColor.C93)} ${TFM(`< ${item.assemblyName} -> ${item.namespace?.length == 0 ? 'NULL' : item.namespace} >`, LogColor.C33)}`
             LOG(`${FM.alignStr(`[${++index}]`, 6)}${item.handle}  ===>  { ${M}| ${F}| ${E}| ${A} } ${N}`, (item.isAbstract || item.isEnum) ? LogColor.C90 : LogColor.C36)
         })
     newLine(1)
@@ -328,7 +328,7 @@ const findMethodsInClass = (filter: string, className: string | NativePointer | 
                 try {
                     modifier = getModifier(cur.flags)
                 } catch (error) {
-                    modifier = cur.modifier
+                    modifier = cur.modifier ?? "unknown"
                 }
                 if (!acc[modifier]) {
                     acc[modifier] = []
@@ -366,7 +366,7 @@ const findMethodsInClass = (filter: string, className: string | NativePointer | 
                 try {
                     modifier = getModifier(item.flags)
                 } catch (error) {
-                    modifier = item.modifier.toString()
+                    modifier = item.modifier ?? "unknown"
                 }
                 const virAddr = FM.alignStr(item.handle, p_size * 3) + (item.virtualAddress.isNull() ? '' : ` --->  ${FM.alignStr(item.relativeVirtualAddress, 12)}`)
                 const className = FM.alignStr(item.class.name, 20)
@@ -397,7 +397,7 @@ const AddressToMethodToShow = (mPtr: NativePointer, simple: boolean = true): voi
     if (simple) return HookerBase.MethodToShow(AddressToMethod(mPtr))
     let method: Il2Cpp.Method = AddressToMethod(mPtr)
     let ImageName = method.class.image.name
-    let NameSpace = method.class.namespace
+    let NameSpace = method.class.namespace??""
     let MethodName = method.class.name
     let maxLen = Math.max(ImageName.length, NameSpace.length, MethodName.length) + 1
     ImageName = FM.alignStr(ImageName, maxLen)

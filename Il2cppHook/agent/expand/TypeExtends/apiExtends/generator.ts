@@ -12,8 +12,8 @@ const generateClass = (className: string, classPtr: NativePointer = ptr(0)) => {
     } else {
         clsInstance = new Il2Cpp.Class(classPtr)
     }
-    let clsName = clsInstance.namespace.replace('.', '_') + "_" + clsInstance.name + "_Impl"
-    let clsExtend = clsInstance.parent?.namespace.replace('.', '_') + "_" + clsInstance.parent?.name + "_Impl"
+    let clsName = clsInstance.namespace?.replace('.', '_') + "_" + clsInstance.name + "_Impl"
+    let clsExtend = clsInstance.parent?.namespace?.replace('.', '_') + "_" + clsInstance.parent?.name + "_Impl"
     LOGD(`\nclass ${clsName} extends ${clsExtend} {\n`)
     // gen fields
     let fields = clsInstance.fields
@@ -132,7 +132,7 @@ const generateApi = (className: string, classPtr: NativePointer = ptr(0)) => {
     }
 
     // gen class title
-    let clsName = clsInstance.namespace.replace('.', '_') + "_" + clsInstance.name + "_API"
+    let clsName = clsInstance.namespace?.replace('.', '_') + "_" + clsInstance.name + "_API"
 
     // import { cache } from "decorator-cache-getter"
     LOGD(`import { cache } from "decorator-cache-getter"\n`)
@@ -171,7 +171,7 @@ const generateApi = (className: string, classPtr: NativePointer = ptr(0)) => {
         let retName = method.returnType.name
         if (retName == "System.Void") retName = 'void'
         else retName = 'pointer'
-        let classNameSpace = method.class.namespace.length == 0 ? "" : `${method.class.namespace}.`
+        let classNameSpace = method.class.namespace?.length == 0 ? "" : `${method.class.namespace}.`
         if (false && !names.includes(method.name)) {
             LOGD(`\t\treturn Il2Cpp.Api.t("${method.class.image.assembly.name}", "${classNameSpace}${className}", "${method.name}", ${method.parameters.length}, "${retName}", ${param})`)
         } else {
@@ -227,9 +227,9 @@ const generateFieldEnum = (className: string, classPtr: NativePointer = ptr(0)) 
     //     Uninitialized = -1
     // }
 
-    LOGE(`export enum ${clsInstance.namespace.replace('.', '_')}_${clsInstance.name} {`)
+    LOGE(`export enum ${clsInstance.namespace?.replace('.', '_')}_${clsInstance.name} {`)
     clsInstance.fields.forEach((field: Il2Cpp.Field) => {
-        Il2Cpp.Api._typeGetTypeEnum
+        Il2Cpp.exports.typeGetTypeEnum
         LOGD(`\t${field.name} = ${field}`)
     })
     LOGO(`}\n`)
@@ -254,7 +254,7 @@ const generateInterface = (className: string, classPtr: NativePointer = ptr(0)) 
     } else {
         clsInstance = new Il2Cpp.Class(classPtr)
     }
-    let clsName = clsInstance.namespace.replace('.', '_') + "_" + clsInstance.name
+    let clsName = clsInstance.namespace?.replace('.', '_') + "_" + clsInstance.name
     LOGD(`interface ${clsName} {`)
     clsInstance.methods.forEach((method: Il2Cpp.Method) => {
         let param = ''

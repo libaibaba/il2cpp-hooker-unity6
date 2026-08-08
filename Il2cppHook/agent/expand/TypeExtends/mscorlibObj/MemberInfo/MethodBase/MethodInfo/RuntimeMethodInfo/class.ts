@@ -6,7 +6,7 @@ import { System_Reflection_MethodInfo_Impl } from "../class"
 class System_Reflection_RuntimeMethodInfo_Impl extends System_Reflection_MethodInfo_Impl {
 
         mhandle: System_IntPtr = lfv(this.handle, "mhandle")
-        name: System_String = readU16(lfv(this.handle, "name").isNull() ? Il2Cpp.String.from("NULL"): lfv(this.handle, "name"))
+        name: System_String = readU16(lfv(this.handle, "name").isNull() ? Il2Cpp.string("NULL"): lfv(this.handle, "name"))
         reftype: System_Type = new System_Type(lfv(this.handle, "reftype"))
         // reftype: NativePointer = lfv(this.handle, "reftype")
 

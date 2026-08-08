@@ -1,3 +1,7 @@
 node_modules
 package-lock.json
 _Ufunc.js
+node_modules/
+.npm-cache/
+_Ufunc_min.js
+.DS_Store
