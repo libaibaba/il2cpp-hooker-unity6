@@ -67,7 +67,7 @@ export class JDWPPackage {
     }
 
     get data(): ArrayBuffer {
-        return this.v_src.buffer.slice(JDB.HEADERLEN)
+        return this.v_src.buffer.slice(JDB.HEADERLEN) as ArrayBuffer;
     }
 
     static get Handshake(): ArrayBuffer {

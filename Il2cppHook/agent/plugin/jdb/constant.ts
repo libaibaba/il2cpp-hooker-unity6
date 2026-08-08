@@ -2,9 +2,9 @@ export type CommandType = { commandSet: number, command: number }
 
 export namespace JDB {
 
-    export const HANDSHAKE:string = "JDWP-Handshake"
+    export var HANDSHAKE:string = "JDWP-Handshake"
 
-    export const HEADERLEN:number = 11
+    export var HEADERLEN:number = 11
 
     export enum Flag {
         REQUEST_PACKET_TYPE = 0x00,

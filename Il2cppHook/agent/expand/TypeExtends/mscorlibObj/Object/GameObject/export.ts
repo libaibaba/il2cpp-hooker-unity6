@@ -332,4 +332,4 @@ declare global {
     var s: (mPtr: NativePointer) => void
 }
 
-export { showGameObject, HookSetActive, getTransform, HookSendMessage }
+// export { showGameObject, HookSetActive, getTransform, HookSendMessage }
