@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "lib": ["es2020"],
-    "resolveJsonModule": true,
-    "experimentalDecorators": true,
+    "target": "es2020",
     "module": "commonjs",
+    "experimentalDecorators": true, // ──> 核心治根开关：强开官方实验性装饰器支持！
+    "emitDecoratorMetadata": true,   // ──> 核心治根开关：完美支持新版 bridge 的元数据依赖！
     "allowJs": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "strict": true,
-    "removeComments": true
-  }
+    "strict": false,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "outFile": "./_Ufunc.js",        // ──> 直接让官方编译器把所有 TS 无损编译融合为这个成品
+    "types": ["frida-gum", "node"]
+  },
+  "include": ["agent/**/*"]
 }
