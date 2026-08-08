@@ -1,0 +1,35 @@
+name: Build Il2Cpp Hooker for Unity6
+
+on:
+  push:
+    branches: [ "main", "master" ] # 当推送到这两个分支时自动触发
+  workflow_dispatch: # 允许你在 GitHub 网页上人肉点击按钮手动触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # 使用最新的纯净 Linux 云端环境
+
+    steps:
+    - name: Checkout repository code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js Environment
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20 # 强行使用完全兼容最新 frida-compile 的高级 Node 版本
+        cache: 'npm'
+
+    - name: Install Pure Dependencies
+      run: |
+        npm install
+
+    - name: Compile and Bundle Script
+      run: |
+        # 使用项目内的编译命令，云端会自动识别 0.13.0 bridge 的现代化语法
+        npm run build
+
+    - name: Upload Finished Artifact (_Ufunc.js)
+      uses: actions/upload-artifact@v4
+      with:
+        name: unity6-il2cpp-hooker-js
+        path: _Ufunc.js # 打包成功后，自动把这个成品做成网页下载链接
