@@ -27,7 +27,7 @@ export class FieldsParser {
                 this.mClass = new Il2Cpp.Object(this.mPtr).class
                 this.mClass.name // use to check if instance is valid
             } catch {
-                if (this.mPtr.isNull()) this.mClass = Il2Cpp.Domain.assembly("mscorlib").image.class("System.Object")
+                if (this.mPtr.isNull()) this.mClass = Il2Cpp.domain.assembly("mscorlib").image.class("System.Object")
                 else this.mClass = new Il2Cpp.Class(this.mPtr)
                 this.mPtr = ptr(0) // not instance need set it to null
             }

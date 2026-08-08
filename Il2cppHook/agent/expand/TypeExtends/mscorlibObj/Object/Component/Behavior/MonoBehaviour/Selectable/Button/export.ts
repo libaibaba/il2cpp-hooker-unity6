@@ -81,7 +81,7 @@ export function OnPointerClick(arg0: number = -1, self_addr: NativePointer = ptr
                 } catch {}
 
                 try {
-                    const method_OnClick = Il2Cpp.Domain.tryAssembly("Assembly-CSharp")!.image.tryClass!("UIButton")!.tryMethod!("OnClick")
+                    const method_OnClick = Il2Cpp.domain.tryAssembly("Assembly-CSharp")!.image.tryClass!("UIButton")!.tryMethod!("OnClick")
                     LOGE("Enable Hook UIButton OnClick at " + method_OnClick!.virtualAddress + "(" + method_OnClick!.virtualAddress.sub(soAddr_local) + ")" + "\n")
                     A(method_OnClick!.virtualAddress, (args) => {
                         LOGW("\n" + getLine(38))
@@ -238,7 +238,7 @@ export const OnButtonClick = (mPtr: NativePointer = ptr(0)) => {
     // Assembly-CSharp UIButton protected virtual Void OnClick()
     // UIButton -> UIButtonColor -> UIWidgetContainer -> MonoBehaviour -> Behaviour -> Component -> Object -> Object
     try {
-        const method_OnClick = Il2Cpp.Domain.tryAssembly("Assembly-CSharp")!.image.tryClass!("UIButton")!.tryMethod!("OnClick")
+        const method_OnClick = Il2Cpp.domain.tryAssembly("Assembly-CSharp")!.image.tryClass!("UIButton")!.tryMethod!("OnClick")
         A(method_OnClick!.virtualAddress, (args) => {
             const instance = new Il2Cpp.Object(args[0])
             const gameObject = new GameObject(getGameObject(instance.handle)!)

@@ -45,7 +45,7 @@ globalThis.listAndroidClass = () => {
 // useage -> fat xxx -f B_AndroidJavaClass()
 globalThis.B_AndroidJavaClass = ()=>{
     Il2Cpp.perform(()=>{
-        const method = Il2Cpp.Domain
+        const method = Il2Cpp.domain
             .assembly("UnityEngine.AndroidJNIModule")
             .image
             .class("UnityEngine.AndroidJavaClass")

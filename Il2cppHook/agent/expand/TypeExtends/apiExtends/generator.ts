@@ -112,7 +112,7 @@ const repStr = (str: string): string => {
 
 const incorLib = (name: string) => {
     let corLib: boolean = false
-    Il2Cpp.Domain.assembly('mscorlib').image.classes.forEach((cls: Il2Cpp.Class) => {
+    Il2Cpp.domain.assembly('mscorlib').image.classes.forEach((cls: Il2Cpp.Class) => {
         if (cls.name == name) corLib = true
     })
     return corLib

@@ -829,24 +829,24 @@ const HookExit = (bt: boolean = true) => {
         Il2Cpp.perform(() => {
             try {
                 // UnityEngine.CoreModule UnityEngine.Application Quit(Int32) : Void
-                R(Il2Cpp.Domain.assembly("UnityEngine.CoreModule").image.class("UnityEngine.Application").method("Quit", 1).virtualAddress, (_srcCall: Function, arg0: NativePointer) => {
+                R(Il2Cpp.domain.assembly("UnityEngine.CoreModule").image.class("UnityEngine.Application").method("Quit", 1).virtualAddress, (_srcCall: Function, arg0: NativePointer) => {
                     // srcCall(arg0, arg1, arg2, arg3)
                     LOGE("called UnityEngine.Application.Quit(" + arg0.toInt32() + ")")
                     return ptr(0)
                 })
-                LOGW(`Hook UnityEngine.Application.Quit(Int32) @ ${Il2Cpp.Domain.assembly("UnityEngine.CoreModule").image.class("UnityEngine.Application").method("Quit", 1).virtualAddress}`)
+                LOGW(`Hook UnityEngine.Application.Quit(Int32) @ ${Il2Cpp.domain.assembly("UnityEngine.CoreModule").image.class("UnityEngine.Application").method("Quit", 1).virtualAddress}`)
             } catch (error) {
                 LOGE(`ERROR Hook UnityEngine.Application.Quit(Int32)`)
             }
 
             try {
                 // UnityEngine.CoreModule UnityEngine.Application Quit() : Void
-                R(Il2Cpp.Domain.assembly("UnityEngine.CoreModule").image.class("UnityEngine.Application").method("Quit").virtualAddress, (_srcCall: Function) => {
+                R(Il2Cpp.domain.assembly("UnityEngine.CoreModule").image.class("UnityEngine.Application").method("Quit").virtualAddress, (_srcCall: Function) => {
                     // srcCall(arg0, arg1, arg2, arg3)
                     LOGE("called UnityEngine.Application.Quit()")
                     return ptr(0)
                 })
-                LOGW(`Hook UnityEngine.Application.Quit() @ ${Il2Cpp.Domain.assembly("UnityEngine.CoreModule").image.class("UnityEngine.Application").method("Quit").virtualAddress}`)
+                LOGW(`Hook UnityEngine.Application.Quit() @ ${Il2Cpp.domain.assembly("UnityEngine.CoreModule").image.class("UnityEngine.Application").method("Quit").virtualAddress}`)
             } catch (error) {
                 LOGE(`ERROR Hook UnityEngine.Application.Quit()`)
             }

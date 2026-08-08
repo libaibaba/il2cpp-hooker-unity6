@@ -49,12 +49,12 @@ export class PauseHelper {
     }
 
     public static getPauseAddress = () => {
-        let EventSystem = Il2Cpp.Domain.assembly("UnityEngine.UI").image.tryClass("UnityEngine.EventSystems.EventSystem")
+        let EventSystem = Il2Cpp.domain.assembly("UnityEngine.UI").image.tryClass("UnityEngine.EventSystems.EventSystem")
         if (EventSystem != null) {
             let method = EventSystem.tryMethod("Update")
             if (method != null) return method.virtualAddress
         }
-        let Image = Il2Cpp.Domain.assembly("UnityEngine.UI").image.tryClass("UnityEngine.UI.Image")
+        let Image = Il2Cpp.domain.assembly("UnityEngine.UI").image.tryClass("UnityEngine.UI.Image")
         if (Image != null) {
             let method = Image.tryMethod("UpdateMaterial")
             if (method != null) return method.virtualAddress

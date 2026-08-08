@@ -17,7 +17,7 @@ Il2Cpp.perform(()=>{
         //   [-]Font @ 0x75f1686700 | M:12 | F:2 | N:UnityEngine
         //     [-]internal static Void InvokeTextureRebuilt_Internal(Font font) @ MI: 0x75f1694bb0 & MP: 0x762f6283a8 & RP: 0x415e3a8
         //       [-]font                | type: 0x762fc07d40 | @ class:0x75f1686700 | UnityEngine.Font
-        const class_Font = Il2Cpp.Domain.assembly('UnityEngine.TextRenderingModule').image.class('UnityEngine.Font')
+        const class_Font = Il2Cpp.domain.assembly('UnityEngine.TextRenderingModule').image.class('UnityEngine.Font')
         const method_InvokeTextureRebuilt_Internal = class_Font.method('InvokeTextureRebuilt_Internal', 1).overload('UnityEngine.Font')
         Interceptor.attach(method_InvokeTextureRebuilt_Internal.virtualAddress, {
             onEnter: function (args: NativePointer[]) {
@@ -411,7 +411,7 @@ function hook_crc() {
     //         [-]path                | type: 0x72ed555f18 | @ class:0x72b025abc0 | System.String
     //         [-]crc                 | type: 0x72ed556ef8 | @ class:0x72b0259760 | System.UInt32
     //         [-]_RET_               | type: 0x72ed55c668 | @ class:0x72b1e75940 | UnityEngine.AssetBundleCreateRequest
-    var cls_AssetBundle = Il2Cpp.Domain.assembly('UnityEngine.AssetBundleModule').image.class('UnityEngine.AssetBundle')
+    var cls_AssetBundle = Il2Cpp.domain.assembly('UnityEngine.AssetBundleModule').image.class('UnityEngine.AssetBundle')
     const method_CreateFromMemory = cls_AssetBundle.tryMethod('LoadFromFileAsync', 2)!
     Interceptor.attach(method_CreateFromMemory.virtualAddress, {
         onEnter: function (args: NativePointer[]) {

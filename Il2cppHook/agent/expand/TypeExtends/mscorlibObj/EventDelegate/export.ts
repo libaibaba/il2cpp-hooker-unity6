@@ -14,7 +14,7 @@ export const B_Execute = ()=>{
     //   [-]EventDelegate @ 0x7621c2f9f0 | M:31 | F:11
     //     [-]public Boolean Execute() @ MI: 0x75d06b2ff8 & MP: 0x765c204528 & RP: 0x1354528
     //       [-]_RET_               | type: 0x765da31378 | @ class:0x7620239f70 | System.Boolean
-    const class_EventDelegate = Il2Cpp.Domain.assembly("Assembly-CSharp").image.class("EventDelegate")
+    const class_EventDelegate = Il2Cpp.domain.assembly("Assembly-CSharp").image.class("EventDelegate")
     const method_Execute = class_EventDelegate.method("Execute", 0)
     Interceptor.attach(method_Execute.virtualAddress, {
         onEnter: function (args: NativePointer[]) {

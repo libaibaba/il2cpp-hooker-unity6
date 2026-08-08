@@ -10,7 +10,7 @@ export class HookerBase {
 
     @cache
     static get _list_assemblies(): Il2Cpp.Assembly[] {
-        return Il2Cpp.Domain.assemblies
+        return Il2Cpp.domain.assemblies
     }
 
     @cache
@@ -42,7 +42,7 @@ export class HookerBase {
 
     @cache
     static get _list_classes(): Il2Cpp.Class[] {
-        return Il2Cpp.Domain.assemblies.map((assembly: Il2Cpp.Assembly) => assembly.image).flatMap((image: Il2Cpp.Image) => image.classes)
+        return Il2Cpp.domain.assemblies.map((assembly: Il2Cpp.Assembly) => assembly.image).flatMap((image: Il2Cpp.Image) => image.classes)
     }
 
     static showImages(filter: string = "", sort: boolean = true): void {
@@ -72,7 +72,7 @@ export class HookerBase {
                     image = new Il2Cpp.Image(ptr(imageOrName.trim()))
                 } else {
                     //传递ImageName的情况
-                    image = Il2Cpp.Domain.assembly(imageOrName).image
+                    image = Il2Cpp.domain.assembly(imageOrName).image
                 }
             } else if (typeof imageOrName == "number") {
                 if (Process.arch == "arm64" && (imageOrName.toString().length > 15))
@@ -328,7 +328,7 @@ export class HookerBase {
             let cache: Il2Cpp.Class | undefined = HookerBase.map_cache_class.get(searchClassName)
             if (cache != undefined) return cache.handle
         }
-        let assemblies = Il2Cpp.Domain.assemblies
+        let assemblies = Il2Cpp.domain.assemblies
         for (let index = 0; index < assemblies.length; index++) {
             if (fromAssebly.includes(assemblies[index].name)) {
                 let ret = innerCall(assemblies[index].image.classes)
@@ -360,7 +360,7 @@ export class HookerBase {
      * findMethod("LerpUnclamped") // 最慢
      * 
      * 以下三种写法等价:
-     * Il2Cpp.Domain.assembly("UnityEngine.CoreModule").image.class("UnityEngine.Texture").method("get_width",1).virtualAddress
+     * Il2Cpp.domain.assembly("UnityEngine.CoreModule").image.class("UnityEngine.Texture").method("get_width",1).virtualAddress
      * ===
      * find_method("UnityEngine.CoreModule","Texture","get_width",0)
      * ===
@@ -377,7 +377,7 @@ export class HookerBase {
         let methodInfo: Il2Cpp.Method | undefined
         if (arguments[3] != undefined && typeof arguments[3] == "number") {
             try {
-                methodInfo = Il2Cpp.Domain.assembly(assemblyName).image.class(className).method(methodName, argsCount)
+                methodInfo = Il2Cpp.domain.assembly(assemblyName).image.class(className).method(methodName, argsCount)
                 if (overload.length != 0) methodInfo = methodInfo?.overload(...overload)
             } catch {
                 throw new Error(`findMethod failed: Not Found ${methodName}(argCount:${argsCount}) in ${className}`)
@@ -423,7 +423,7 @@ export class HookerBase {
             let cachedPointer = HookerBase.findMethodsyncCacheMap.get(cacheKey)
             if (cachedPointer != undefined) return cachedPointer as NativePointer
         }
-        let currentlibPack = Il2Cpp.Domain.assembly(imageName).image
+        let currentlibPack = Il2Cpp.domain.assembly(imageName).image
         let currentlib: NativePointer = currentlibPack.handle
         let klass = Il2Cpp.Api._classFromName(currentlib, allocCStr(imageName), allocCStr(className))
         if (klass.isNull()) {
