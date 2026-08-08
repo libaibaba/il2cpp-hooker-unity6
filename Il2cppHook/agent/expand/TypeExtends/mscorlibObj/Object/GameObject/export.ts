@@ -12,7 +12,7 @@ export enum activeStatus {
 }
 
 type GobjPtr = NativePointer
-globalThis.HookSetActive = (defaltActive: activeStatus | boolean = activeStatus.active, PrintStackTrace: boolean = false, filterString: Array<string> | string = "") => {
+const HookSetActive = (defaltActive: activeStatus | boolean = activeStatus.active, PrintStackTrace: boolean = false, filterString: Array<string> | string = "") => {
 
     let setActiveAddress = find_method("UnityEngine.CoreModule", "GameObject", "SetActive", 1)
     try {
@@ -83,7 +83,7 @@ globalThis.HookSetActive = (defaltActive: activeStatus | boolean = activeStatus.
     }
 }
 
-globalThis.HookSendMessage = () => {
+const HookSendMessage = () => {
     try {
         Java.perform(()=>{
             const UnityPlayer = Java.use("com.unity3d.player.UnityPlayer")
@@ -120,7 +120,7 @@ export function GetGameObjectFromPtr(mPtr: NativePointer | Il2Cpp.GameObject | I
     } else throw new Error("mPtr is not a valid instance of the specified type")
 }
 
-globalThis.showGameObject = (mPtr: NativePointer | Il2Cpp.GameObject | Il2Cpp.Transform) => {
+const showGameObject = (mPtr: NativePointer | Il2Cpp.GameObject | Il2Cpp.Transform) => {
     if (mPtr == undefined || (mPtr instanceof NativePointer && mPtr.isNull())) return
     let gameObject: Il2Cpp.GameObject = GetGameObjectFromPtr(mPtr)!
     LOGO("--------- GameObject ---------")
@@ -141,9 +141,15 @@ globalThis.showGameObject = (mPtr: NativePointer | Il2Cpp.GameObject | Il2Cpp.Tr
     LOGD("hierarchy\t--->\t" + layerNames)
 }
 
-globalThis.getTransform = (mPtr: NativePointer) => {
+const getTransform = (mPtr: NativePointer) => {
     return GetGameObjectFromPtr(mPtr)!.transform.handle
 }
+
+globalThis.showGameObject = showGameObject
+globalThis.HookSetActive = HookSetActive
+globalThis.getTransform = getTransform
+globalThis.HookSendMessage = HookSendMessage
+
 
 globalThis.setActive = (mPtr: Il2Cpp.GameObject | Il2Cpp.Transform | string | number | NativePointer, active: boolean = false) => {
     mPtr = checkGT(mPtr)
@@ -332,4 +338,4 @@ declare global {
     var s: (mPtr: NativePointer) => void
 }
 
-// export { showGameObject, HookSetActive, getTransform, HookSendMessage }
+export { showGameObject, HookSetActive, getTransform, HookSendMessage }
