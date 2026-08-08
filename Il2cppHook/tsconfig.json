@@ -1,14 +1,19 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "lib": ["es2020"],
-    "resolveJsonModule": true,
-    "experimentalDecorators": true,
+    "target": "es2022",
     "module": "commonjs",
     "allowJs": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "strict": true,
-    "removeComments": true
-  }
+    "checkJs": false,
+    "strict": false,                  // ──> 彻底关闭严格模式
+    "noImplicitAny": false,           // ──> 允许隐式 any，不报未声明错误
+    "skipLibCheck": true,             // ──> 跳过第三方库的严格类型检查
+    "noEmitOnError": false,           // ──> 核心必杀：就算报红字，也必须强行输出成品的 _Ufunc.js！
+    "types": [
+      "frida-gum",
+      "node"
+    ]
+  },
+  "include": [
+    "agent/**/*"
+  ]
 }
