@@ -7,7 +7,7 @@
  */
 function fixMoreVerison() {
 
-    const UnityVersion = "2020.3.0f1c1"
+    const UnityVersion = "6000.0.58f2"
 
     Il2Cpp.perform(() => {
         if (Il2Cpp.exports.resolveInternalCall(allocCStr('UnityEngine.Application::get_unityVersion')).isNull()) {

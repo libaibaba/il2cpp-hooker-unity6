@@ -5,3 +5,5 @@ node_modules/
 .npm-cache/
 _Ufunc_min.js
 .DS_Store
+venv
+_agent.js
